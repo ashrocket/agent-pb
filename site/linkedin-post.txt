@@ -10,7 +10,7 @@ It's a Claude Code plugin, but the prompt is portable. Drop the same instruction
 
 Cross-platform too: macOS pbcopy, Linux xclip, WSL clip.exe. Auto-detects.
 
-Sibling tool to agent-look (screenshot scanner) — same philosophy: stop dragging things around and let the agent handle the boring parts.
+Sibling tool to agent-look (https://agent-look.raiteri.net — screenshot scanner) — same philosophy: stop dragging things around and let the agent handle the boring parts.
 
 agent-pb — MIT licensed:
 https://github.com/ashrocket/agent-pb

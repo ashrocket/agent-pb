@@ -24,7 +24,7 @@ Cross-platform too: `pbcopy` on macOS, `xclip` on Linux, `clip.exe` on WSL. The 
 
 ---
 
-This is the second tool in what I'm calling the **agent-\*** family. The first was [agent-look](https://agent-look.pages.dev) — a screenshot scanner that lets you say `/look` instead of dragging image files into Claude.
+This is the second tool in what I'm calling the **agent-\*** family. The first was [agent-look](https://agent-look.raiteri.net) — a screenshot scanner that lets you say `/look` instead of dragging image files into Claude.
 
 Same philosophy: stop moving things around manually. Let the agent handle the boring mechanical parts so you can stay in flow.
 

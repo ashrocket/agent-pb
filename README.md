@@ -11,7 +11,7 @@ No selecting. No highlighting. No dragging.
 ### Claude Code (plugin)
 
 ```
-/plugin marketplace add https://github.com/ashrocket/agent-pb
+/plugin marketplace add ashrocket/agent-pb
 /plugin install agent-pb@agent-pb
 ```
 
@@ -36,7 +36,7 @@ Works on macOS (`pbcopy`), Linux (`xclip`/`wl-copy`), and WSL (`clip.exe`). Auto
 
 ## Also
 
-- [agent-look](https://github.com/ashrocket/agent-look) — screenshot scanner for Claude. Same philosophy: stop dragging things around.
+- [agent-look](https://agent-look.raiteri.net) — screenshot scanner for Claude. Same philosophy: stop dragging things around.
 
 ## License
 
