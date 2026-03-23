@@ -1,0 +1,13 @@
+{
+  "name": "agent-pb",
+  "version": "0.1.0",
+  "description": "Copy the most recent useful artifact from your conversation to the clipboard. Works across AI coding agents.",
+  "author": {
+    "name": "Ashley Raiteri",
+    "email": "agent-pb@raiteri.net"
+  },
+  "homepage": "https://agent-pb.pages.dev",
+  "repository": "https://github.com/ashrocket/agent-pb",
+  "license": "MIT",
+  "keywords": ["clipboard", "pbcopy", "paste-buffer", "productivity", "cross-agent"]
+}

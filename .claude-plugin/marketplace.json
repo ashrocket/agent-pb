@@ -1,0 +1,14 @@
+{
+  "name": "agent-pb-dev",
+  "description": "Development marketplace for agent-pb",
+  "owner": { "name": "Ashley Raiteri" },
+  "plugins": [
+    {
+      "name": "agent-pb",
+      "description": "Clipboard butter knife. Copies the most recent useful artifact to your paste buffer.",
+      "version": "0.1.0",
+      "source": "./",
+      "author": { "name": "Ashley Raiteri" }
+    }
+  ]
+}
