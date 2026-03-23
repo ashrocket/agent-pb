@@ -12,7 +12,7 @@ No selecting. No highlighting. No dragging.
 
 ```
 /plugin marketplace add https://github.com/ashrocket/agent-pb
-/plugin install agent-pb@agent-pb-dev
+/plugin install agent-pb@agent-pb
 ```
 
 ### Cursor / Windsurf / Copilot

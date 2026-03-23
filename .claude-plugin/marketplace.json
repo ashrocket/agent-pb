@@ -1,6 +1,6 @@
 {
-  "name": "agent-pb-dev",
-  "description": "Development marketplace for agent-pb",
+  "name": "agent-pb",
+  "description": "Clipboard butter knife for AI coding agents",
   "owner": { "name": "Ashley Raiteri" },
   "plugins": [
     {
