@@ -8,7 +8,7 @@ agent-look — say /look and the agent scans your recent screenshots, renames th
 
 agent-pb — say /pb and the agent finds the most recent useful artifact in your conversation (query, command, code block, URL) and puts it in your clipboard. No selecting, no highlighting. Just paste.
 
-Both are Claude Code plugins, but the prompts are portable. Drop them into Cursor, Windsurf, Copilot — anything that can run a shell command. macOS only for now — Spotlight OCR and pbcopy are hard dependencies.
+Both are Claude Code plugins, but the prompts are portable. Drop them into Cursor, Windsurf, Copilot — anything that can run a shell command. agent-look is macOS only (Spotlight OCR dependency). agent-pb is cross-platform — macOS, Linux, and WSL.
 
 Same philosophy: laziness as a design principle. The agent is right there with shell access — let it handle the boring parts.
 

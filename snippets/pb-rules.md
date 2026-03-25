@@ -14,8 +14,8 @@ Detect platform: `pbcopy` (macOS), `wl-copy` / `xclip -selection clipboard` (Lin
 
 ### Rules
 
-- Strip markdown fences, copy raw content only
-- Preserve newlines/indentation
+- Strip markdown fences and trailing newlines, copy raw content only
+- Preserve internal newlines/indentation
 - Never copy secrets without explicit request
 - If no clipboard command found, print artifact in a fenced code block for manual copy
 - If no useful artifact exists, say so — don't copy noise
