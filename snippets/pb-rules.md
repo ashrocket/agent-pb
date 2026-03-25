@@ -10,11 +10,13 @@ Ordered sequences: copy first-to-run, not last.
 
 ### Copy
 
-`printf '%s' 'CONTENT' | pbcopy` (macOS), `wl-copy` / `xclip -selection clipboard` (Linux), `clip.exe` (WSL). Escape `'` as `'\''`. Multi-line: heredoc with `pbcopy <<'PBEOF'`.
+Detect platform: `pbcopy` (macOS), `wl-copy` / `xclip -selection clipboard` (Linux), `clip.exe` (WSL). Assign to `$CB`. Single-line: `printf '%s' 'CONTENT' | $CB`. Escape `'` as `'\''`. Multi-line: heredoc with `$CB <<'PBEOF'`.
 
 ### Rules
 
 - Strip markdown fences, copy raw content only
 - Preserve newlines/indentation
 - Never copy secrets without explicit request
+- If no clipboard command found, print artifact in a fenced code block for manual copy
+- If no useful artifact exists, say so — don't copy noise
 - One-line confirmation: `Copied to clipboard: <description>`

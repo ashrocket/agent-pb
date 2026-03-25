@@ -31,4 +31,6 @@ Multi-line: heredoc with `$CB <<'PBEOF'`
 - Strip markdown fences, copy raw content only
 - Preserve newlines/indentation
 - Never copy secrets without explicit request
+- If no clipboard command found, print artifact in a fenced code block and tell user to copy manually
+- If no useful artifact exists, say so — don't copy noise
 - One-line confirmation only: `Copied to clipboard: <description>`

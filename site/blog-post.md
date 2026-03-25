@@ -8,7 +8,7 @@ Here's my workflow, dozens of times a day: I ask Claude to write a query, or a c
 
 It's not hard. It's just *constant*. And every time I do it I think: you're an AI agent with access to my shell. Why am I the one doing this?
 
-So I built **agent-pb** — a clipboard butter knife. You say `/pb` and the agent finds the most recent useful thing in your conversation — a query, a shell command, a code block, a URL — and spreads it right into your clipboard. No selecting. No highlighting. You just paste.
+So I built **agent-pb**. In Codex you say `$pb`. In slash-command hosts you say `/pb`. Or you just say "copy that." The agent finds the most recent useful thing in your conversation — a query, a shell command, a code block, a URL — and puts the artifact itself right into your clipboard. No selecting. No highlighting. You just paste.
 
 ---
 
@@ -16,11 +16,11 @@ The metaphor came naturally. pb is the macOS clipboard command (`pbcopy`/`pbpast
 
 ---
 
-The interesting design decision was making it portable. agent-pb is a proper Claude Code plugin, but the core of it is just a prompt and a shell command. There's nothing Claude-specific about "find the most recent useful artifact and pipe it to the clipboard."
+The interesting design decision was making it portable. Claude Code can expose it as a plugin. Codex can use it as a skill. Other hosts can use the same rules text. There's nothing Claude-specific about "find the most recent useful artifact and pipe it to the clipboard."
 
 So the GitHub repo includes a portable snippet — drop it into your `.cursorrules`, `.windsurfrules`, `.github/copilot-instructions.md`, or whatever your agent reads. Same butter knife, different bread.
 
-Cross-platform too: `pbcopy` on macOS, `xclip` on Linux, `clip.exe` on WSL. The skill auto-detects.
+Cross-platform too: `pbcopy` on macOS, `xclip` or `wl-copy` on Linux, `clip.exe` on WSL/Windows. The skill auto-detects.
 
 ---
 

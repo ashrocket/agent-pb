@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I built a butter knife for your AI agent's clipboard — agent-pb</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #8B6914;
+      color: #fff;
+      min-height: 100vh;
+    }
+
+    /* ── CRUST HEADER ── */
+    header {
+      background: #6B4F10;
+      border-bottom: 6px solid #4A370B;
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    header .butter-pat {
+      width: 22px; height: 16px;
+      background: #FFD966;
+      border-radius: 3px;
+      transform: rotate(-4deg);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #FFE4A0;
+    }
+    header h1 a { color: inherit; text-decoration: none; }
+    header h1 span { color: #fff; }
+    header nav { margin-left: auto; display: flex; gap: 24px; }
+    header nav a {
+      color: #D4B456;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    header nav a:hover { color: #fff; }
+
+    /* ── ARTICLE ── */
+    article {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 48px 80px;
+    }
+    article h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    article .subtitle {
+      font-size: 1rem;
+      color: #C4A44E;
+      margin-bottom: 48px;
+    }
+    article p {
+      font-size: 1.1rem;
+      color: #FFF3D4;
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+    article strong {
+      color: #fff;
+    }
+    article a {
+      color: #FFD966;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    article a:hover { color: #fff; }
+    article em { font-style: italic; }
+    article hr {
+      border: none;
+      height: 4px;
+      background: #4A370B;
+      border-radius: 2px;
+      margin: 40px 0;
+      max-width: 80px;
+    }
+    article code {
+      background: rgba(0,0,0,0.35);
+      color: #FFD966;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.95rem;
+    }
+    article .cta {
+      margin-top: 48px;
+      padding: 32px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+    }
+    article .cta p {
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    article .cta p:last-child { margin-bottom: 0; }
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity 0.15s;
+      background: #fff;
+      color: #A67C00;
+    }
+    .btn:hover { opacity: 0.85; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #2A1F08;
+      border-top: 4px solid #4A370B;
+      padding: 36px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer .watermark {
+      font-size: 0.85rem;
+      color: #8B7430;
+    }
+    footer .watermark a { color: #B8962E; text-decoration: none; }
+    footer .butter-pats { display: flex; gap: 8px; align-items: center; }
+    footer .butter-pats span {
+      width: 16px; height: 12px;
+      background: #FFD966;
+      border-radius: 2px;
+      opacity: 0.3;
+    }
+    footer .butter-pats span:nth-child(2) { opacity: 0.2; transform: rotate(5deg); }
+    footer .butter-pats span:nth-child(3) { opacity: 0.15; transform: rotate(-3deg); }
+
+    @media (max-width: 700px) {
+      article { padding: 40px 24px 60px; }
+      article h1 { font-size: 1.8rem; }
+      header, footer { padding-left: 24px; padding-right: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="butter-pat"></div>
+    <h1><a href="/"><span>agent-pb</span></a></h1>
+    <nav>
+      <a href="https://github.com/ashrocket/agent-pb">GitHub</a>
+      <a href="https://agent-look.raiteri.net">agent-look</a>
+      <a href="https://github.com/ashrocket/agent-pb/issues">File an issue</a>
+    </nav>
+  </header>
+
+  <article>
+    <h1>I built a butter knife for your AI agent's clipboard</h1>
+    <p class="subtitle">There are probably a million reasons why I shouldn't have built this. If you know any, leave a comment below.</p>
+
+    <hr>
+
+    <p>Here's my workflow, dozens of times a day: I ask Claude to write a query, or a curl command, or a function. Claude writes it. Then I have to select the text &mdash; carefully, because the markdown fences aren't part of it &mdash; copy it, switch to my terminal or editor, and paste.</p>
+
+    <p>It's not hard. It's just <em>constant</em>. And every time I do it I think: you're an AI agent with access to my shell. Why am I the one doing this?</p>
+
+    <p>So I built <strong>agent-pb</strong>. In Codex you say <code>$pb</code>. In slash-command hosts you say <code>/pb</code>. Or you just say "copy that." The agent finds the most recent useful thing in your conversation &mdash; a query, a shell command, a code block, a URL &mdash; and puts the artifact itself right into your clipboard. No selecting. No highlighting. You just paste.</p>
+
+    <hr>
+
+    <p>The metaphor came naturally. pb is the macOS clipboard command (<code>pbcopy</code>/<code>pbpaste</code>), but it's also how the tool feels. You're not carefully cutting and placing text &mdash; you're just spreading it where it needs to go, like butter on toast.</p>
+
+    <hr>
+
+    <p>The interesting design decision was making it portable. Claude Code can expose it as a plugin. Codex can use it as a skill. Other hosts can use the same rules text. There's nothing Claude-specific about "find the most recent useful artifact and pipe it to the clipboard."</p>
+
+    <p>So the GitHub repo includes a portable snippet &mdash; drop it into your <code>.cursorrules</code>, <code>.windsurfrules</code>, <code>.github/copilot-instructions.md</code>, or whatever your agent reads. Same butter knife, different bread.</p>
+
+    <p>Cross-platform too: <code>pbcopy</code> on macOS, <code>xclip</code> or <code>wl-copy</code> on Linux, <code>clip.exe</code> on WSL/Windows. The skill auto-detects.</p>
+
+    <hr>
+
+    <p>This is the second tool in what I'm calling the <strong>agent-*</strong> family. The first was <a href="https://agent-look.raiteri.net">agent-look</a> &mdash; a screenshot scanner that lets you say <code>/look</code> instead of dragging image files into Claude.</p>
+
+    <p>Same philosophy: stop moving things around manually. Let the agent handle the boring mechanical parts so you can stay in flow.</p>
+
+    <hr>
+
+    <div class="cta">
+      <p><strong>Get it:</strong> <a href="https://github.com/ashrocket/agent-pb">github.com/ashrocket/agent-pb</a></p>
+      <p>If something's broken, file an issue. If it works perfectly, I will accept quiet gratitude.</p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="watermark">
+      Made by <a href="https://ashley.raiteri.net">Ashley Raiteri</a> &nbsp;&middot;&nbsp;
+      MIT License
+    </div>
+    <div class="butter-pats">
+      <span></span><span></span><span></span>
+    </div>
+  </footer>
+
+</body>
+</html>

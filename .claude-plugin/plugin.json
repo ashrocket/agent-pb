@@ -6,7 +6,7 @@
     "name": "Ashley Raiteri",
     "email": "agent-pb@raiteri.net"
   },
-  "homepage": "https://agent-pb.pages.dev",
+  "homepage": "https://agent-pb.raiteri.net",
   "repository": "https://github.com/ashrocket/agent-pb",
   "license": "MIT",
   "keywords": ["clipboard", "pbcopy", "paste-buffer", "productivity", "cross-agent"]

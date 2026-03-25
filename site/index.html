@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>agent-pb — stop selecting, start spreading</title>
+  <title>agent-pb — stop selecting, start pasting</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -380,6 +380,7 @@
     <div class="butter-pat"></div>
     <h1><span>agent-pb</span></h1>
     <nav>
+      <a href="/blog.html">Blog</a>
       <a href="https://github.com/ashrocket/agent-pb">GitHub</a>
       <a href="https://agent-look.raiteri.net">agent-look</a>
       <a href="https://github.com/ashrocket/agent-pb/issues">File an issue</a>
@@ -388,7 +389,7 @@
 
   <div class="hero">
     <h2>Stop selecting and copying text from your AI agent.</h2>
-    <p>You wrote a query. A curl command. A code block. Now you need it in your clipboard. Say <strong>/pb</strong>. It's already there.</p>
+    <p>You wrote a query. A curl command. A code block. Now you need it in your clipboard. In Codex, say <strong>$pb</strong>. In other hosts, use <strong>/pb</strong> or plain language like <strong>copy that</strong>.</p>
     <div class="hero-buttons">
       <a href="https://github.com/ashrocket/agent-pb" class="btn btn-primary">Get it on GitHub</a>
       <a href="#install" class="btn btn-secondary">Install in 1 minute</a>
@@ -403,7 +404,7 @@
 
   <div class="section">
     <h3>How it works</h3>
-    <h2>Spread it. Don't drag it.</h2>
+    <h2>Copy the artifact. Skip the selection.</h2>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
@@ -412,8 +413,8 @@
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h4>Say <code>/pb</code></h4>
-        <p>The agent finds the most recent useful artifact — a query, command, code block, URL, or config — and copies it to your clipboard.</p>
+        <h4>Invoke the clipboard helper</h4>
+        <p>Use <code>$pb</code> in Codex, <code>/pb</code> in slash-command hosts, or plain language like <code>copy that</code>. The agent finds the most recent useful artifact and copies it to your clipboard.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
@@ -431,28 +432,33 @@
 
   <div class="cross-agent">
     <h3>Works everywhere</h3>
-    <h2>One butter knife. Every agent.</h2>
-    <p>agent-pb is a Claude Code plugin, but the idea is portable. Drop the same instructions into any AI coding tool.</p>
+    <h2>One clipboard workflow. Multiple agent hosts.</h2>
+    <p>agent-pb works best as a Codex skill, but the same artifact-selection behavior is portable to Claude Code and other rule-based coding tools.</p>
     <div class="agent-grid">
       <div class="agent-card">
         <h4>Claude Code</h4>
-        <p>Native plugin. Install once, use forever.</p>
+        <p>Plugin install with slash-style usage.</p>
         <code>/pb</code>
+      </div>
+      <div class="agent-card">
+        <h4>Codex</h4>
+        <p>Install the bundled skill into <code>$CODEX_HOME/skills</code> and invoke it explicitly.</p>
+        <code>$pb</code>
       </div>
       <div class="agent-card">
         <h4>Cursor</h4>
         <p>Add to <code>.cursorrules</code></p>
-        <code>@pb</code>
+        <code>"copy that"</code>
       </div>
       <div class="agent-card">
         <h4>Windsurf</h4>
         <p>Add to <code>.windsurfrules</code></p>
-        <code>@pb</code>
+        <code>"copy that"</code>
       </div>
       <div class="agent-card">
         <h4>GitHub Copilot</h4>
         <p>Add to <code>.github/copilot-instructions.md</code></p>
-        <code>@pb</code>
+        <code>"copy that"</code>
       </div>
     </div>
   </div>
@@ -465,7 +471,7 @@
 
   <div class="features">
     <h3>What it actually does</h3>
-    <h2>Simple. Like butter.</h2>
+    <h2>Useful defaults for real coding sessions.</h2>
     <ul class="feature-list">
       <li>
         <div class="icon">🔪</div>
@@ -478,7 +484,7 @@
         <div class="icon">🖥️</div>
         <div class="text">
           <strong>Cross-platform clipboard</strong>
-          <span>macOS <code>pbcopy</code>, Linux <code>xclip</code>/<code>wl-copy</code>, WSL <code>clip.exe</code>. Auto-detects your platform.</span>
+          <span>macOS <code>pbcopy</code>, Linux <code>xclip</code>/<code>wl-copy</code>, WSL/Windows <code>clip.exe</code>. Auto-detects your platform.</span>
         </div>
       </li>
       <li>
@@ -499,7 +505,7 @@
         <div class="icon">🧈</div>
         <div class="text">
           <strong>Works with any AI coding agent</strong>
-          <span>Native plugin for Claude Code. Portable prompt snippet for Cursor, Windsurf, Copilot, Codex, and anything else that can run a shell command.</span>
+          <span>Bundled skill for Codex, plugin path for Claude Code, and a portable rules snippet for Cursor, Windsurf, Copilot, and similar hosts.</span>
         </div>
       </li>
     </ul>
@@ -514,6 +520,20 @@
       <span class="cmd">/plugin install agent-pb@agent-pb</span>
     </div>
 
+    <h2 class="platform-heading">Codex</h2>
+    <div class="code-block">
+      <span class="comment"># install the bundled skill</span><br>
+      <span class="cmd">mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills/pb"</span><br>
+      <span class="cmd">curl -sL https://raw.githubusercontent.com/ashrocket/agent-pb/main/skills/pb/SKILL.md \</span><br>
+      <span class="cmd">&nbsp;&nbsp;-o "${CODEX_HOME:-$HOME/.codex}/skills/pb/SKILL.md"</span>
+    </div>
+    <div class="code-block">
+      <span class="comment"># then use it in Codex</span><br>
+      <span class="cmd">$pb</span><br>
+      <span class="cmd">$pb the AQL query</span><br>
+      <span class="cmd">copy that</span>
+    </div>
+
     <h2 class="platform-heading">Cursor / Windsurf / Copilot</h2>
     <div class="code-block">
       <span class="comment"># copy the portable snippet to your rules file</span><br>
@@ -521,7 +541,7 @@
     </div>
 
     <p class="note">
-      Something broken? <a href="https://github.com/ashrocket/agent-pb/issues">File an issue.</a>
+      Some hosts may ask for approval before writing to the system clipboard. Something broken? <a href="https://github.com/ashrocket/agent-pb/issues">File an issue.</a>
       Want to improve it? PRs welcome.
     </p>
   </div>
