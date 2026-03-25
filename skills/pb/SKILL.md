@@ -1,65 +1,34 @@
 ---
 name: pb
-description: This skill should be used when the user says /pb, asks to copy something to the clipboard, paste buffer, or pbcopy, or says "copy that", "grab that command", or "put that in my clipboard". It copies the most recent useful artifact from the conversation to the system clipboard.
-user-invocable: true
-argument-hint: "[optional: description of what to copy]"
-allowed-tools: ["Bash"]
+description: Use when the user types $pb, /pb, or asks to copy something from the conversation to the clipboard, such as "copy that", "copy the query", "grab that command", or "gimme that". Copies the selected artifact to the system clipboard.
 ---
 
-# pb — Paste Buffer
+Copy the artifact to clipboard. Be fast — no explanation, no preamble.
 
-Copy the most recent artifact from the conversation that the user is likely to need outside this session.
+## Select
 
-## What to Copy (Priority Order)
+With args: match by type ("command"), description ("the AQL query"), or ordinal ("2" = 2nd most recent).
 
-1. **Query** — AQL, SQL, ArangoShell query just written or discussed
-2. **Shell command** — curl, git, ssh, aws, artisan, docker command
-3. **Code block** — function, class, script, config snippet just written
-4. **URL** — endpoint, web URL, API path mentioned
-5. **Config / JSON / YAML** — structured data block
-6. **Plain text** — error message, key value, ID, filename
+Without args, pick most recent: query > shell command > code block > URL > config > plain text.
 
-If the user provides an argument (e.g., `/pb the curl command`), copy that specific artifact instead of using priority order.
+Ordered sequences: copy first-to-run, not last.
 
-Pick the **single most recent** matching artifact, not multiple.
-
-## How to Execute
-
-First, detect the clipboard command:
+## Copy
 
 ```bash
 if command -v pbcopy &>/dev/null; then CB="pbcopy"
 elif command -v wl-copy &>/dev/null; then CB="wl-copy"
 elif command -v xclip &>/dev/null; then CB="xclip -selection clipboard"
-elif command -v clip.exe &>/dev/null; then CB="clip.exe"
-fi
+elif command -v clip.exe &>/dev/null; then CB="clip.exe"; fi
 ```
 
-For **single-line content**, use printf (not echo — no trailing newline, no escape interpretation):
+Single-line: `printf '%s' 'CONTENT' | $CB` (escape `'` as `'\''`)
 
-```bash
-printf '%s' 'CONTENT' | pbcopy
-```
-
-**Important:** If content contains single quotes, escape them: replace `'` with `'\''`.
-
-For **multi-line content**, use a heredoc:
-
-```bash
-pbcopy <<'PBEOF'
-CONTENT_HERE
-PBEOF
-```
-
-If no clipboard command is available (e.g., remote SSH session), print the artifact in a fenced code block and tell the user to copy manually.
-
-Then confirm in one line:
-> Copied to clipboard: `<short description of what was copied>`
+Multi-line: heredoc with `$CB <<'PBEOF'`
 
 ## Rules
 
-- Copy the artifact itself — not surrounding explanation or markdown
-- Strip markdown fences (` ``` `) before copying
-- Preserve internal newlines and indentation in code/config
-- If nothing useful exists in the conversation, say so instead of copying noise
-- Never copy secrets, tokens, or credentials to clipboard without explicit request
+- Strip markdown fences, copy raw content only
+- Preserve newlines/indentation
+- Never copy secrets without explicit request
+- One-line confirmation only: `Copied to clipboard: <description>`

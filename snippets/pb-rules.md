@@ -1,33 +1,20 @@
 ## /pb — Paste Buffer
 
-When the user says "/pb" or "@pb", copy the most recent useful artifact from the conversation to their clipboard.
+When the user says "$pb", "/pb", "copy that", "gimme that", or asks to copy something from the conversation, copy it to their clipboard.
 
-### What to copy (priority order)
-1. Query (SQL, AQL, etc.)
-2. Shell command (curl, git, ssh, docker, etc.)
-3. Code block (function, class, script)
-4. URL or API endpoint
-5. Config / JSON / YAML block
-6. Plain text (error message, ID, key value)
+### Select
 
-If the user specifies what to copy (e.g., "/pb the curl command"), copy that instead.
+With args: match by type ("command"), description ("the AQL query"), or ordinal ("2" = 2nd most recent). Without args, pick most recent: query > shell command > code block > URL > config > plain text.
 
-Pick the **single most recent** match, not multiple.
+Ordered sequences: copy first-to-run, not last.
 
-### How to copy
+### Copy
 
-Use `printf '%s' 'CONTENT' | pbcopy` on macOS, `xclip -selection clipboard` on Linux, or `clip.exe` on WSL/Windows.
-
-For multi-line content, use a heredoc:
-```
-pbcopy <<'PBEOF'
-content here
-PBEOF
-```
+`printf '%s' 'CONTENT' | pbcopy` (macOS), `wl-copy` / `xclip -selection clipboard` (Linux), `clip.exe` (WSL). Escape `'` as `'\''`. Multi-line: heredoc with `pbcopy <<'PBEOF'`.
 
 ### Rules
-- Copy the artifact itself, not surrounding explanation
-- Strip markdown fences before copying
-- Preserve internal newlines and indentation
-- Never copy secrets/tokens unless explicitly asked
-- Confirm: "Copied to clipboard: `<description>`"
+
+- Strip markdown fences, copy raw content only
+- Preserve newlines/indentation
+- Never copy secrets without explicit request
+- One-line confirmation: `Copied to clipboard: <description>`
