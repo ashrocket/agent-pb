@@ -1,6 +1,6 @@
 # I built a butter knife for your AI agent's clipboard
 
-There are probably a million reasons why I shouldn't have built this. If you know any, leave a comment below.
+There are probably a million reasons why I shouldn't have built this. If you know any, leave a comment at [the repo](https://github.com/ashrocket/agent-pb).
 
 ---
 
